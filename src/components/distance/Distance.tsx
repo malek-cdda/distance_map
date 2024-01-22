@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 const Distance = () => {
   const [latLng, setLatLng] = useState({ lat: 0, lng: 0 });
   const [placeId, setPlaceId] = useState("");
+  const [distance, setDistance] = useState("");
   useEffect(() => {
     let map;
 
@@ -41,8 +42,10 @@ const Distance = () => {
             destination: end,
             travelMode: google.maps.TravelMode.DRIVING,
           },
-          function (response, status) {
+          function (response: any, status: any) {
             if (status === "OK") {
+              console.log(response?.routes[0]?.legs[0]?.distance?.text);
+              setDistance(response?.routes[0]?.legs[0]?.distance?.text);
               directionsRenderer.setDirections(response);
             } else {
               window.alert("Directions request failed due to " + status);
@@ -103,7 +106,13 @@ const Distance = () => {
   return (
     <>
       <div id="map" className="h-96"></div>
-      <input id="pac-input" />
+      <div className="flex justify-center my-5 ">
+        <input
+          id="pac-input"
+          className="border rounded-xl px-5 py-2 w-3/4"
+          placeholder="enter your city"
+        />
+      </div>
     </>
   );
 };
