@@ -109,7 +109,7 @@ const Distance = () => {
       <div className="flex justify-center my-5 ">
         <input
           id="pac-input"
-          className="border rounded-xl px-5 py-2 w-3/4"
+          className="border rounded-xl px-5 py-2 w-3/4 focus:outline-none"
           placeholder="enter your city"
         />
       </div>
