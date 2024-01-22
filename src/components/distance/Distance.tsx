@@ -113,6 +113,7 @@ const Distance = () => {
           placeholder="enter your city"
         />
       </div>
+      <h1 className="text-center"> City Distance {distance}</h1>
     </>
   );
 };
