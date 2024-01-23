@@ -10,28 +10,12 @@ const Distance = () => {
 
     function initMap() {
       map = new google.maps.Map(document.getElementById("map") as any, {
-        center: { lat: 37.7749, lng: -122.4194 },
+        center: navigator?.geolocation
+          ? { lat: 37.7749, lng: -122.4194 }
+          : { lat: 37.7749, lng: -122.4194 },
         zoom: 12,
       });
-      map.addListener("click", (e: any) => {
-        console.log(e.latLng.lat(), e.latLng.lng());
-        setLatLng({ lat: e.latLng.lat(), lng: e.latLng.lng() });
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode(
-          { location: { lat: e.latLng.lat(), lng: e.latLng.lng() } },
-          function (results: any, status: any) {
-            if (status === google.maps.GeocoderStatus.OK) {
-              if (results[1]) {
-                setPlaceId(results[1].place_id);
-              } else {
-                window.alert("No results found");
-              }
-            } else {
-              window.alert("Geocoder failed due to: " + status);
-            }
-          }
-        );
-      });
+
       let directionsService = new google.maps.DirectionsService();
       let directionsRenderer = new google.maps.DirectionsRenderer();
       directionsRenderer.setMap(map);
@@ -44,7 +28,6 @@ const Distance = () => {
           },
           function (response: any, status: any) {
             if (status === "OK") {
-              console.log(response?.routes[0]?.legs[0]?.distance?.text);
               setDistance(response?.routes[0]?.legs[0]?.distance?.text);
               directionsRenderer.setDirections(response);
             } else {
@@ -66,7 +49,6 @@ const Distance = () => {
       autocomplete.bindTo("bounds", map);
       autocomplete.addListener("place_changed", () => {
         const place: any = autocomplete.getPlace();
-
         if (!place?.geometry?.location) {
           window.alert("wrong address");
           return place;
@@ -106,10 +88,11 @@ const Distance = () => {
   return (
     <>
       <div id="map" className="h-96"></div>
-      <div className="flex justify-center my-5 ">
+      <div className="flex justify-center my-5  flex-col items-center ">
+        <label className="capitalize  w-3/4 px-2 ">distance </label>
         <input
           id="pac-input"
-          className="border rounded-xl px-5 py-2 w-3/4 focus:outline-none"
+          className="border rounded-xl px-5 py-2 w-3/4 focus:outline-none focus:rounded-t-xl focus:rounded-none"
           placeholder="enter your city"
         />
       </div>
