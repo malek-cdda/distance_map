@@ -1,6 +1,10 @@
 "use client";
-import Distance from "@/components/distance/Distance";
 const Home = () => {
-  return <Distance />;
+  return (
+    <>
+      <h1>Home</h1>
+      <p>Home page</p>
+    </>
+  );
 };
 export default Home;

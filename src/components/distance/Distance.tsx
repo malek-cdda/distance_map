@@ -15,7 +15,6 @@ const Distance = () => {
           : { lat: 37.7749, lng: -122.4194 },
         zoom: 12,
       });
-
       let directionsService = new google.maps.DirectionsService();
       let directionsRenderer = new google.maps.DirectionsRenderer();
       directionsRenderer.setMap(map);
@@ -86,18 +85,18 @@ const Distance = () => {
   }, [latLng, placeId, state]);
   console.log(state);
   return (
-    <>
+    <div className="container mx-auto relative">
       <div id="map" className="h-96"></div>
-      <div className="flex justify-center my-5  flex-col items-center ">
-        <label className="capitalize  w-3/4 px-2 ">distanation </label>
+      <div className="flex justify-center my-5  flex-col items-center absolute -top-4 left-1/2 transform -translate-x-1/2 w-1/2">
+        {/* <label className="capitalize  w-full px-2 ">destination </label> */}
         <input
           id="pac-input"
-          className="border rounded-xl px-5 py-2 w-3/4 focus:outline-none focus:rounded-t-xl focus:rounded-none"
-          placeholder="enter your city"
+          className="border rounded-xl px-5 py-2 w-full focus:outline-none focus:rounded-t-xl focus:rounded-none"
+          placeholder="enter your Destination city"
         />
       </div>
       <h1 className="text-center"> City Distance {distance}</h1>
-    </>
+    </div>
   );
 };
 export default Distance;

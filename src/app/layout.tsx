@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import CustomProvider from "@/redux/Provider";
 import Script from "next/script";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,25 @@ export default function RootLayout({
         defer></Script>
 
       <body className={inter.className}>
+        <div className="flex justify-center container mx-auto">
+          <nav className="flex  gap-4 items-center h-16 bg-white text-black relative shadow-sm font-mono px-20 w-full border rounded-md">
+            <Link
+              href="/distance"
+              className="hover:underline bg-blue-300 px-2 py-2 rounded-lg capitalize text-white">
+              distance
+            </Link>
+            {/* <Link
+              href="/moveableDistance"
+              className="hover:underline bg-blue-300 px-2 py-2 rounded-lg capitalize text-white">
+              Moveable Distance
+            </Link> */}
+            <Link
+              href="/placeDistance"
+              className="hover:underline bg-blue-300 px-2 py-2 rounded-lg capitalize text-white">
+              Place Distance
+            </Link>
+          </nav>
+        </div>
         <CustomProvider>{children}</CustomProvider>
       </body>
     </html>
