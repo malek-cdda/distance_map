@@ -89,7 +89,7 @@ const Distance = () => {
     <>
       <div id="map" className="h-96"></div>
       <div className="flex justify-center my-5  flex-col items-center ">
-        <label className="capitalize  w-3/4 px-2 ">distance </label>
+        <label className="capitalize  w-3/4 px-2 ">distanation </label>
         <input
           id="pac-input"
           className="border rounded-xl px-5 py-2 w-3/4 focus:outline-none focus:rounded-t-xl focus:rounded-none"
